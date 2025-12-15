@@ -1,20 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
-const SignUp = () => {
+const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
-        username: '',
         email: '',
-        password: '',
-        role: '',
-        career: ''
+        password: ''
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('SignUp submitted:', formData);
+        console.log('Login submitted:', formData);
     };
 
     const handleChange = (e) => {
@@ -30,7 +28,6 @@ const SignUp = () => {
             className="min-h-screen flex items-center justify-center relative overflow-hidden"
             style={{ backgroundColor: '#1a1d23', color: '#e8e9ed' }}
         >
-
             {/* Background Effects */}
             <div className="absolute top-0 left-0 -translate-y-1/2 -translate-x-1/4 w-[800px] h-[800px] pointer-events-none">
                 <div
@@ -54,14 +51,13 @@ const SignUp = () => {
             <div
                 className="
                     relative z-10 w-full
-                    max-w-[480px]
-                    md:max-w-[720px]
-                    lg:max-w-[900px]
+                    max-w-[420px]
+                    md:max-w-[600px]
+                    lg:max-w-[680px]
                     px-6 md:px-8
                     animate-fade-in-up
                 "
             >
-
                 {/* Logo */}
                 <div className="text-center mb-10">
                     <div
@@ -75,7 +71,7 @@ const SignUp = () => {
                     </div>
                 </div>
 
-                {/* Card */}
+                {/* Login Card */}
                 <div
                     className="rounded-[20px] p-8 md:p-10 lg:p-12 relative overflow-hidden"
                     style={{
@@ -87,7 +83,9 @@ const SignUp = () => {
                     {/* Top Gradient */}
                     <div
                         className="absolute top-0 left-0 right-0 h-[3px]"
-                        style={{ background: 'linear-gradient(90deg, #8fa599, #7c9cbf)' }}
+                        style={{
+                            background: 'linear-gradient(90deg, #8fa599, #7c9cbf)'
+                        }}
                     />
 
                     {/* Header */}
@@ -96,43 +94,22 @@ const SignUp = () => {
                             className="text-[28px] md:text-[32px] font-bold mb-3 tracking-tight"
                             style={{ fontFamily: 'Literata, serif' }}
                         >
-                            Create your account
+                            Welcome back
                         </h1>
                         <p className="text-base" style={{ color: '#a8adb8' }}>
-                            Start your journey toward meaningful growth.
+                            Continue your journey toward meaningful growth.
                         </p>
                     </div>
 
                     {/* Form */}
                     <form
                         onSubmit={handleSubmit}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5"
+                        className="grid grid-cols-1 gap-y-5"
                     >
-
-                        {/* Username */}
-                        <div className="md:col-span-1">
-                            <label className="block mb-2 text-[14px] font-semibold" style={{ color: '#a8adb8' }}>
-                                Username
-                            </label>
-                            <input
-                                name="username"
-                                value={formData.username}
-                                onChange={handleChange}
-                                className="w-full px-5 py-4 rounded-[10px] outline-none transition-all"
-                                style={{
-                                    backgroundColor: '#1f2229',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                                    color: '#e8e9ed'
-                                }}
-                                placeholder="iCanUser"
-                                required
-                            />
-                        </div>
-
                         {/* Email */}
-                        <div className="md:col-span-1">
+                        <div>
                             <label className="block mb-2 text-[14px] font-semibold" style={{ color: '#a8adb8' }}>
-                                Email
+                                Email address
                             </label>
                             <input
                                 type="email"
@@ -151,80 +128,46 @@ const SignUp = () => {
                         </div>
 
                         {/* Password */}
-                        <div className="md:col-span-2">
+                        <div>
                             <label className="block mb-2 text-[14px] font-semibold" style={{ color: '#a8adb8' }}>
                                 Password
                             </label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className="w-full px-5 py-4 rounded-[10px] outline-none transition-all"
-                                style={{
-                                    backgroundColor: '#1f2229',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                                    color: '#e8e9ed'
-                                }}
-                                placeholder="*****"
-                                required
-                            />
-                        </div>
-
-                        {/* Role */}
-                        <div className="md:col-span-1">
-                            <label className="block mb-2 text-[14px] font-semibold" style={{ color: '#a8adb8' }}>
-                                Role
-                            </label>
-                            <select
-                                name="role"
-                                value={formData.role}
-                                onChange={handleChange}
-                                className="w-full px-5 py-4 pr-12 rounded-[10px] appearance-none outline-none"
-                                style={{
-                                    backgroundColor: '#1f2229',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                                    color: '#e8e9ed'
-                                }}
-                                required
-                            >
-                                <option value="" disabled>Select role</option>
-                                <option value="apprentice">Apprentice</option>
-                                <option value="fellow">Fellow</option>
-                                <option value="mentor">Mentor</option>
-                            </select>
-                        </div>
-
-                        {/* Career */}
-                        <div className="md:col-span-1">
-                            <label className="block mb-2 text-[14px] font-semibold" style={{ color: '#a8adb8' }}>
-                                Career
-                            </label>
-                            <input
-                                name="career"
-                                value={formData.career}
-                                onChange={handleChange}
-                                className="w-full px-5 py-4 rounded-[10px] outline-none transition-all"
-                                style={{
-                                    backgroundColor: '#1f2229',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                                    color: '#e8e9ed'
-                                }}
-                                placeholder="Software Engineer"
-                                required
-                            />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    className="w-full px-5 py-4 rounded-[10px] outline-none transition-all"
+                                    style={{
+                                        backgroundColor: '#1f2229',
+                                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                                        color: '#e8e9ed'
+                                    }}
+                                    placeholder="Enter your password"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-xl"
+                                    style={{ color: '#6b7280' }}
+                                >
+                                    {showPassword ? '🙈' : '👁️'}
+                                </button>
+                            </div>
                         </div>
 
                         {/* Submit */}
                         <button
                             type="submit"
-                            className="md:col-span-2 w-full mt-2 px-6 py-4 rounded-[10px] font-semibold transition-all"
+                            className="w-full mt-2 px-6 py-4 rounded-[10px] font-semibold transition-all"
                             style={{
                                 backgroundColor: '#8fa599',
                                 color: '#1a1d23'
                             }}
                         >
-                            Sign Up
+                            Sign in
                         </button>
                     </form>
 
@@ -234,16 +177,16 @@ const SignUp = () => {
                         style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}
                     >
                         <p className="text-[15px]" style={{ color: '#a8adb8' }}>
-                            Already have an account?{' '}
-                            <span className="font-semibold" style={{ color: '#8fa599' }}>
-                                Login
-                            </span>
+                            Don’t have an account?{' '}
+                            <Link href={'/signUp'} className="font-semibold" style={{ color: '#8fa599' }}>
+                                Create one
+                            </Link>
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* Animations & Fonts */}
+            {/* Styles */}
             <style jsx>{`
                 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Literata:wght@600;700&display=swap');
 
@@ -269,9 +212,13 @@ const SignUp = () => {
                 .animate-float-1 { animation: float-1 20s infinite ease-in-out; }
                 .animate-float-2 { animation: float-2 25s infinite ease-in-out; }
                 .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
+
+                input::placeholder {
+                    color: #6b7280;
+                }
             `}</style>
         </div>
     );
 };
 
-export default SignUp;
+export default Login;

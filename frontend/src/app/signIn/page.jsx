@@ -12,6 +12,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        alert('Done!')
         console.log('Login submitted:', formData);
     };
 

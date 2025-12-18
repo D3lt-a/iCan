@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +16,30 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('SignUp submitted:', formData);
+        const formData = new FormData(e.target);
+
+        const data = {
+            name: formData.get('username'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+            role: formData.get('role'),
+            goal: formData.get('career')
+        }
+        fetch('/api/auth/signUp', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('✅ SignUp submitted:', data);
+            alert(data);
+        })
+        .catch(error => {
+            console.error('⛔ Error Submitting the Data:', error);
+        });
     };
 
     const handleChange = (e) => {
@@ -156,20 +180,30 @@ const SignUp = () => {
                             <label className="block mb-2 text-[14px] font-semibold" style={{ color: '#a8adb8' }}>
                                 Password
                             </label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className="w-full px-5 py-4 rounded-[10px] outline-none transition-all"
-                                style={{
-                                    backgroundColor: '#1f2229',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                                    color: '#e8e9ed'
-                                }}
-                                placeholder="*****"
-                                required
-                            />
+                            <div className="relative">
+                                <input                                    
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    className="w-full px-5 py-4 rounded-[10px] outline-none transition-all"
+                                    style={{
+                                        backgroundColor: '#1f2229',
+                                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                                        color: '#e8e9ed'
+                                    }}
+                                    placeholder="*****"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-xl"
+                                    style={{ color: '#6b7280' }}
+                                >
+                                    {showPassword ? '🙈' : '👁️'}
+                                </button>
+                            </div>
                         </div>
 
                         {/* Role */}

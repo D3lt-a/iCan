@@ -45,7 +45,7 @@ const page = () => {
               Sign In
             </Link>
             <Link
-              href={'/singUp'}
+              href={'/signUp'}
               className="px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300"
               style={{
                 backgroundColor: '#8fa599',

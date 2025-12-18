@@ -1,11 +1,13 @@
 const User = require('../models/userModel');
 
-const createUser = async (uname, uemail, upasskey) => {
+const createUser = async (uname, uemail, upasskey, role, goal) => {
     try {
         const newUser= new User({
             username: uname,
             useremail: String(uemail),
-            userpasskey: upasskey
+            userpasskey: upasskey,
+            role: role,
+            goal: goal
         })
         await newUser.save();
         return { success: true, message: "User created successfully" };
